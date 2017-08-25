@@ -1,0 +1,10 @@
+body {
+  background: #36393f;
+  color: #fff;
+  margin: 0;
+}
+
+body,
+input[type="text"] {
+  font-family: "Helvetica Neue";
+}

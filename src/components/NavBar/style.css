@@ -1,0 +1,15 @@
+.nav {
+  position: absolute;
+  left: 0;
+  right: 0;
+  padding: 16px;
+}
+
+.navTop {
+  top: 0;
+}
+
+.navBottom {
+  bottom: 0;
+  margin-bottom: 32px;
+}

@@ -1,0 +1,75 @@
+.menu {
+  position: fixed;
+  z-index: 16;
+}
+
+.sidebar {
+  position: fixed;
+  z-index: 15;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 300px;
+  background-color: #2f3136;
+  padding: 16px 16px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, .5);
+}
+
+.sidebarOverlay {
+  position: fixed;
+  z-index: 14;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, .5);
+}
+
+.sidebar input {
+  box-sizing: border-box;
+  display: block;
+  width: 100%;
+  margin-top: 4px;
+  outline: none;
+  border: none;
+  background-color: rgba(0, 0, 0, .1);
+  padding: 8px;
+  border-radius: 2px;
+  color: #fff;
+  font-size: 12px;
+}
+
+.subList {
+  border-radius: 2px;
+  background-color: rgba(0, 0, 0, .1);
+}
+
+.sub {
+  border-radius: 2px;
+}
+
+.sub + .sub {
+  border-top: rgba(0, 0, 0, .2) 1px solid;
+}
+
+.sub button {
+  width: 30px;
+  float: right;
+  border: none;
+  outline: none;
+  background-color: transparent;
+  color: #fff;
+  cursor: pointer;
+  line-height: 18px;
+  font-size: 24px;
+}
+
+.sub button:before {
+  content: "⨯";
+}
+
+.subName {
+  display: inline-block;
+  padding: 8px;
+  font-size: 12px;
+}

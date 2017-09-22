@@ -20,7 +20,8 @@ class Menu extends Component {
   }
 
   addSub() {
-    const subs = [...this.props.subs, this.state.subName];
+    const newSubs = this.state.subName.split('+');
+    const subs = [...this.props.subs, ...newSubs];
     this.props.onChangeSubs(subs);
     this.setState({ subName: '' });
   }

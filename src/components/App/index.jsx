@@ -4,7 +4,7 @@ import Menu from 'components/Menu';
 import Player from 'components/Player';
 import Store from 'core/store';
 
-import css from './style.css';
+import './style.css';
 
 class App extends Component {
   constructor(props) {

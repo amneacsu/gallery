@@ -60,10 +60,13 @@ class Player extends Component {
   }
 
   render() {
-    console.log(this.props.cursor);
     const item = this.item;
     let status = '';
     const stream = this.state.stream;
+
+    if (!item) {
+      return null;
+    }
 
     if (this.props.subs.length === 0) {
       status = 'no subs';

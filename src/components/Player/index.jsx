@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 import Item from 'components/Item';
@@ -11,6 +12,12 @@ import * as PlayerActions from 'store/actions/player';
 import css from './style.css';
 
 class Player extends Component {
+  static propTypes = {
+    cursor: PropTypes.number,
+    subs: PropTypes.array,
+    onSetCursor: PropTypes.func,
+  };
+
   constructor(props) {
     super(props);
 

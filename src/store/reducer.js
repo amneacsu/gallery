@@ -1,7 +1,7 @@
 import {
   SET_CURSOR,
   STREAM_APPEND,
-} from '../actions/player.js';
+} from './actions';
 
 const initialState = {
   cursor: 0,

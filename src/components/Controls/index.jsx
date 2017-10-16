@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 
 import Cursor from 'components/Cursor';
 import Nav from 'components/Nav';
-import * as PlayerActions from 'store/actions/player';
+import * as Actions from 'store/actions';
 import css from './style.css';
 
 class Controls extends Component {
@@ -34,10 +34,10 @@ class Controls extends Component {
 
 export default connect(
   (state) => ({
-    cursor: state.player.cursor,
-    itemCount: state.player.items.length,
+    cursor: state.cursor,
+    itemCount: state.items.length,
   }),
   (dispatch) => ({
-    onSetCursor: (cursor) => dispatch(PlayerActions.setCursor(cursor)),
+    onSetCursor: (cursor) => dispatch(Actions.setCursor(cursor)),
   }),
 )(Controls);

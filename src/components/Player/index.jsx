@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import Item from 'components/Item';
 import Stream from 'core/stream';
 
-import * as PlayerActions from 'store/actions/player';
+import * as Actions from 'store/actions';
 
 import css from './style.css';
 
@@ -75,12 +75,12 @@ class Player extends Component {
 
 export default connect(
   (state) => ({
-    cursor: state.player.cursor,
-    item: state.player.items[state.player.cursor],
-    items: state.player.items,
+    cursor: state.cursor,
+    item: state.items[state.cursor],
+    items: state.items,
   }),
   (dispatch) => ({
-    onSetCursor: (cursor) => dispatch(PlayerActions.setCursor(cursor)),
-    onStreamAppend: (items) => dispatch(PlayerActions.append(items)),
+    onSetCursor: (cursor) => dispatch(Actions.setCursor(cursor)),
+    onStreamAppend: (items) => dispatch(Actions.append(items)),
   })
 )(Player);

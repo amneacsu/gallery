@@ -78,8 +78,8 @@ class Player extends Component {
       <div>
         <div className={css.item}>
           {item && <Item
-            url={item}
-            key={item}
+            item={item}
+            key={item.name}
             onClick={() => this.props.onSetCursor(this.props.cursor + 1)}
           />}
         </div>

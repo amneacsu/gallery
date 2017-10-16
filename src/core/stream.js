@@ -10,13 +10,16 @@ const getGfyUrl = (url) => {
   });
 };
 
-const whitelist = (url) => {
+const whitelist = ({ url }) => {
   if (url.indexOf('imgur.com/a/') > -1) return false;
   if (url.indexOf('imgur.com/gallery/') > -1) return false;
-  return (url.indexOf('imgur.com') > -1 || url.indexOf('gfycat') > 1);
+
+  return url.indexOf('gfycat') > 1 || url.match(/(webm|mp4|gifv)$/);
 };
 
-const sanitize = (url) => {
+const sanitize = (item) => {
+  let url = item.url;
+
   url = url.replace('gfycat.com/gifs/detail', 'gfycat.com');
   url = url.replace(/[\?#].*$/, '');
 
@@ -31,23 +34,24 @@ const sanitize = (url) => {
 
   url = url.replace('.gifv', '.mp4');
 
-  return url;
+  return {
+    ...item,
+    url,
+  };
 };
 
-const validate = (url) => {
-  return url.match(/(webm|mp4)$/);
-  return url;
-};
-
-const parseItem = (url) => {
+const parseItem = (item) => {
   return new Promise((resolve) => {
-    let result = url;
-
-    if (url.match(/gfycat/)) {
-      result = getGfyUrl(url);
+    if (item.url.match(/gfycat/)) {
+      getGfyUrl(item.url).then((result) => {
+        resolve({
+          ...item,
+          url: result,
+        });
+      });
+    } else {
+      resolve(item);
     }
-
-    resolve(result);
   });
 };
 
@@ -71,12 +75,10 @@ class Stream {
       this.after = data.after;
       return data.children;
     })
-    .then(items => items.map(item => item.data.url))
+    .then(items => items.map(item => item.data))
     .then(items => items.filter(whitelist))
     .then(items => items.map(sanitize))
-    .then(items => Promise.all(items.map(parseItem)))
-    .then(items => items.filter(validate))
-    .then(items => items);
+    .then(items => Promise.all(items.map(parseItem)));
   };
 }
 

@@ -15,9 +15,10 @@ class Item extends Component {
 
   render() {
     const {
-      url,
       onClick,
     } = this.props;
+
+    const url = this.props.item.url;
 
     const match = url.match(/\.(\w*)$/);
     const ext = match ? match[1] : null;

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 import Menu from 'components/Menu';
 import Player from 'components/Player';
+import Controls from 'components/Controls';
 import Store from 'core/store';
 
 import './style.css';
@@ -32,6 +33,7 @@ class App extends Component {
         <Player
           subs={this.state.subs}
         />
+        <Controls />
       </div>
     );
   }

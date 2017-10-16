@@ -3,8 +3,6 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 import Item from 'components/Item';
-import Cursor from 'components/Cursor';
-import Nav from 'components/Nav';
 import Stream from 'core/stream';
 
 import * as PlayerActions from 'store/actions/player';
@@ -61,15 +59,6 @@ class Player extends Component {
       return null;
     }
 
-    let status = '';
-    const items = this.props.items;
-
-    if (this.props.subs.length === 0) {
-      status = 'no subs';
-    } else if (items.length === 0) {
-      status = 'loading';
-    }
-
     return (
       <div>
         <div className={css.item}>
@@ -77,18 +66,6 @@ class Player extends Component {
             item={item}
             key={item.name}
             onClick={() => this.props.onSetCursor(this.props.cursor + 1)}
-          />}
-        </div>
-        <div className={css.overlays}>
-          {status}
-          {this.props.items.length > 0 && <Cursor
-            current={this.props.cursor}
-            total={this.props.items.length}
-          />}
-          {this.props.items.length > 0 && <Nav
-            cursor={this.props.cursor}
-            max={this.props.items.length - 1}
-            onChange={this.props.onSetCursor}
           />}
         </div>
       </div>

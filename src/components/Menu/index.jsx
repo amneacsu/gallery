@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import _sortBy from 'lodash/sortBy';
 
 import NavBar from 'components/NavBar';
 import NavBtn from 'components/NavBtn';
@@ -32,6 +33,8 @@ class Menu extends Component {
   }
 
   render() {
+    const subs = _sortBy(this.props.subs);
+
     return (
       <div className={css.menu}>
         <NavBar top>
@@ -42,7 +45,7 @@ class Menu extends Component {
         </NavBar>
         {this.state.open && <div className={css.sidebar}>
           <div className={css.subList}>
-            {this.props.subs.map(sub => (
+            {subs.map(sub => (
               <div className={css.sub} key={sub}>
                 <span className={css.subName}>
                   /r/{sub}

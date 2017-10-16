@@ -20,6 +20,7 @@
     "comma-dangle": [1, "always-multiline"],
     "import/no-unresolved": 0,
     "react/prop-types": 1,
+    "react/no-unused-prop-types": 1,
     "react/react-in-jsx-scope": 2,
     "react/jsx-uses-react": 2,
     "react/jsx-uses-vars": 2,

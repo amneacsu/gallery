@@ -15,6 +15,7 @@ class Player extends Component {
   static propTypes = {
     cursor: PropTypes.number,
     subs: PropTypes.array,
+    item: PropTypes.object,
     items: PropTypes.array,
     onSetCursor: PropTypes.func,
     onStreamAppend: PropTypes.func,
@@ -53,19 +54,15 @@ class Player extends Component {
     });
   }
 
-  get item() {
-    const { cursor, items } = this.props;
-    return items[cursor];
-  }
-
   render() {
-    const item = this.item;
-    let status = '';
-    const items = this.props.items;
+    const item = this.props.item;
 
     if (!item) {
       return null;
     }
+
+    let status = '';
+    const items = this.props.items;
 
     if (this.props.subs.length === 0) {
       status = 'no subs';
@@ -102,6 +99,7 @@ class Player extends Component {
 export default connect(
   (state) => ({
     cursor: state.player.cursor,
+    item: state.player.items[state.player.cursor],
     items: state.player.items,
   }),
   (dispatch) => ({

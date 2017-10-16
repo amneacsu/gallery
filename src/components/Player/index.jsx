@@ -15,17 +15,15 @@ class Player extends Component {
   static propTypes = {
     cursor: PropTypes.number,
     subs: PropTypes.array,
+    items: PropTypes.array,
     onSetCursor: PropTypes.func,
+    onStreamAppend: PropTypes.func,
   };
 
   constructor(props) {
     super(props);
 
     this.stream = new Stream();
-
-    this.state = {
-      stream: [],
-    };
   };
 
   componentWillMount() {
@@ -33,16 +31,13 @@ class Player extends Component {
     this.fetchMore();
   }
 
-  componentWillUpdate(nextProps, nextState) {
-    if (nextProps.cursor === nextState.stream.length - 1) {
+  componentWillUpdate(nextProps) {
+    if (nextProps.cursor === nextProps.items.length - 1) {
       this.fetchMore();
     }
 
     if (nextProps.subs !== this.props.subs) {
       this.stream.setSubs(nextProps.subs);
-      this.setState({
-        stream: [],
-      });
       this.props.onSetCursor(0);
       this.fetchMore();
     }
@@ -54,22 +49,19 @@ class Player extends Component {
     }
 
     this.stream.fetchMore().then((newItems) => {
-      this.setState({
-        stream: [...this.state.stream, ...newItems],
-      });
+      this.props.onStreamAppend(newItems);
     });
   }
 
   get item() {
-    const { cursor } = this.props;
-    const { stream } = this.state;
-    return stream[cursor];
+    const { cursor, items } = this.props;
+    return items[cursor];
   }
 
   render() {
     const item = this.item;
     let status = '';
-    const stream = this.state.stream;
+    const items = this.props.items;
 
     if (!item) {
       return null;
@@ -77,7 +69,7 @@ class Player extends Component {
 
     if (this.props.subs.length === 0) {
       status = 'no subs';
-    } else if (stream.length === 0) {
+    } else if (items.length === 0) {
       status = 'loading';
     }
 
@@ -92,13 +84,13 @@ class Player extends Component {
         </div>
         <div className={css.overlays}>
           {status}
-          {this.state.stream.length > 0 && <Cursor
+          {this.props.items.length > 0 && <Cursor
             current={this.props.cursor}
-            total={this.state.stream.length}
+            total={this.props.items.length}
           />}
-          {this.state.stream.length > 0 && <Nav
+          {this.props.items.length > 0 && <Nav
             cursor={this.props.cursor}
-            max={this.state.stream.length - 1}
+            max={this.props.items.length - 1}
             onChange={this.props.onSetCursor}
           />}
         </div>
@@ -110,8 +102,10 @@ class Player extends Component {
 export default connect(
   (state) => ({
     cursor: state.player.cursor,
+    items: state.player.items,
   }),
   (dispatch) => ({
     onSetCursor: (cursor) => dispatch(PlayerActions.setCursor(cursor)),
+    onStreamAppend: (items) => dispatch(PlayerActions.append(items)),
   })
 )(Player);

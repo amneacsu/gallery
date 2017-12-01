@@ -10,6 +10,18 @@ const getGfyUrl = (url) => {
   });
 };
 
+const getImgurUrl = (url) => {
+  let match = url.match(/imgur\.com\/+([\w]+)/);
+  const id = match[1];
+
+  return fetch(`https://api.imgur.com/3/image/${id}`, {
+    cache: false,
+    headers: true,
+  }).then((d) => {
+    return d ? d.data.mp4 : null;
+  });
+};
+
 const whitelist = ({ url }) => {
   if (url.indexOf('imgur.com/a/') > -1) return false;
   if (url.indexOf('imgur.com/gallery/') > -1) return false;
@@ -32,8 +44,6 @@ const sanitize = (item) => {
     if (!match) url += '.jpg';
   }
 
-  url = url.replace('.gifv', '.mp4');
-
   return {
     ...item,
     url,
@@ -44,6 +54,13 @@ const parseItem = (item) => {
   return new Promise((resolve) => {
     if (item.url.match(/gfycat/)) {
       getGfyUrl(item.url).then((result) => {
+        resolve({
+          ...item,
+          url: result,
+        });
+      });
+    } else if (item.url.match(/imgur/)) {
+      getImgurUrl(item.url).then((result) => {
         resolve({
           ...item,
           url: result,
@@ -68,17 +85,17 @@ class Stream {
 
   fetchMore() {
     const sub = this.subs.join('+');
-    // const url = `https://www.reddit.com/r/${sub}/top.json?sort=top&t=month&after=${this.after}`;
     const url = `https://www.reddit.com/r/${sub}.json?after=${this.after}`;
 
-    return fetch(url, this.after !== null).then(({ data }) => {
+    return fetch(url).then(({ data }) => {
       this.after = data.after;
       return data.children;
     })
     .then(items => items.map(item => item.data))
     .then(items => items.filter(whitelist))
     .then(items => items.map(sanitize))
-    .then(items => Promise.all(items.map(parseItem)));
+    .then(items => Promise.all(items.map(parseItem)))
+    .then(items => items.filter(i => i.url));
   };
 }
 

@@ -6,9 +6,9 @@ const writeCache = (key, value) => {
   localStorage.setItem(key, JSON.stringify(value));
 };
 
-export const fetch = (url, cache = true) => {
+export const fetch = (url, options = {}) => {
   return new Promise((resolve, reject) => {
-    if (cache) {
+    if (options.cache) {
       const cached = readCache(url);
 
       if (cached) {
@@ -19,16 +19,23 @@ export const fetch = (url, cache = true) => {
     const xhr = new XMLHttpRequest();
 
     xhr.open('GET', url);
+    if (options.headers) {
+      xhr.setRequestHeader('Authorization', 'Client-ID 6a417df13aa3f62');
+    }
     xhr.send();
 
     xhr.onload = () => {
       if (xhr.status === 200) {
         const response = JSON.parse(xhr.responseText);
-        if (cache) {
+        if (options.cache) {
           writeCache(url, response);
         }
         resolve(response);
       };
+
+      if (xhr.status === 404) {
+        resolve(null);
+      }
     };
 
     xhr.onerror = () => {

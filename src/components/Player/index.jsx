@@ -65,7 +65,7 @@ class Player extends Component {
           {item && <Item
             item={item}
             key={item.name}
-            onClick={() => this.props.onSetCursor(this.props.cursor + 1)}
+            onEnded={() => this.props.onSetCursor(this.props.cursor + 1)}
           />}
         </div>
       </div>

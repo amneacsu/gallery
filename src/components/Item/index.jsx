@@ -8,7 +8,7 @@ import css from './index.css';
 class Item extends Component {
   static propTypes = {
     item: PropTypes.object,
-    onClick: PropTypes.func,
+    onEnded: PropTypes.func,
   }
 
   componentWillUnmount() {
@@ -21,21 +21,18 @@ class Item extends Component {
 
   render() {
     const {
-      onClick,
+      onEnded,
     } = this.props;
 
     const url = this.props.item.url;
 
     return (
       <video
-        className={css.Video}
-        ref={(e) => this.setRef(e)}
         autoPlay
         controls
-        onClick={onClick}
-        onEnded={() => {
-          onClick();
-        }}
+        className={css.Video}
+        ref={(e) => this.setRef(e)}
+        onEnded={onEnded}
       >
         <source src={url} />
       </video>

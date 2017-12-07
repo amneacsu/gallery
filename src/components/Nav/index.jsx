@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import NavBar from 'components/NavBar';
 import NavBtn from 'components/NavBtn';
 
 import css from './index.css';
@@ -40,7 +39,7 @@ class Nav extends Component {
     } = this.props;
 
     return (
-      <NavBar bottom>
+      <div>
         <div className={css.left}>
           <NavBtn
             label="←"
@@ -56,7 +55,7 @@ class Nav extends Component {
             onClick={() => this.nav(1)}
           />
         </div>
-      </NavBar>
+      </div>
     );
   }
 }

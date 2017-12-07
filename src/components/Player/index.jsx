@@ -60,14 +60,12 @@ class Player extends Component {
     }
 
     return (
-      <div>
-        <div className={css.item}>
-          {item && <Item
-            item={item}
-            key={item.name}
-            onEnded={() => this.props.onSetCursor(this.props.cursor + 1)}
-          />}
-        </div>
+      <div className={css.item}>
+        {item && <Item
+          item={item}
+          key={item.name}
+          onEnded={() => this.props.onSetCursor(this.props.cursor + 1)}
+        />}
       </div>
     );
   }

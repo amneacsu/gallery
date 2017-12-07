@@ -16,7 +16,6 @@ class Controls extends Component {
   render() {
     return (
       <div className={css.Controls}>
-        {status}
         {this.props.itemCount > 0 && <Nav
           cursor={this.props.cursor}
           max={this.props.itemCount - 1}

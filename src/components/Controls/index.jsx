@@ -2,9 +2,12 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-import Nav from 'components/Nav';
+import NavBtn from 'components/NavBtn';
 import * as Actions from 'store/actions';
+
 import css from './index.css';
+
+const clamp = (value, min, max) => Math.max(min, Math.min(value, max));
 
 class Controls extends Component {
   static propTypes = {
@@ -13,14 +16,44 @@ class Controls extends Component {
     onSetCursor: PropTypes.func,
   };
 
+  componentWillMount() {
+    window.onkeydown = (e) => {
+      let dir;
+      if (e.which === 37) dir = -1;
+      if (e.which === 39 || e.which === 32) dir = 1;
+      dir && this.nav(dir);
+    };
+  }
+
+  nav(offset) {
+    const { cursor, itemCount } = this.props;
+    const newOffset = clamp(cursor + offset, 0, itemCount - 1);
+
+    if (newOffset !== cursor) {
+      this.props.onSetCursor(newOffset);
+    }
+  }
+
   render() {
+    const { cursor, itemCount } = this.props;
+
     return (
-      <div className={css.Controls}>
-        {this.props.itemCount > 0 && <Nav
-          cursor={this.props.cursor}
-          max={this.props.itemCount - 1}
-          onChange={this.props.onSetCursor}
-        />}
+      <div className={css.controls}>
+        <div className={css.left}>
+          <NavBtn
+            label="←"
+            disabled={cursor === 0}
+            onClick={() => this.nav(-1)}
+          />
+        </div>
+
+        <div className={css.right}>
+          <NavBtn
+            label="→"
+            disabled={cursor === itemCount - 1}
+            onClick={() => this.nav(1)}
+          />
+        </div>
       </div>
     );
   }

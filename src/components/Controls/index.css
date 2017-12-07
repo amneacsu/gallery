@@ -1,8 +1,16 @@
-.Controls {
+.controls {
   position: fixed;
   z-index: 10;
   left: 0;
   right: 0;
   bottom: 0;
   color: #FFF;
+}
+
+.left {
+  float: left;
+}
+
+.right {
+  float: right;
 }

@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-import Cursor from 'components/Cursor';
 import Nav from 'components/Nav';
 import * as Actions from 'store/actions';
 import css from './index.css';
@@ -18,10 +17,6 @@ class Controls extends Component {
     return (
       <div className={css.Controls}>
         {status}
-        {this.props.itemCount > 0 && <Cursor
-          current={this.props.cursor}
-          total={this.props.itemCount}
-        />}
         {this.props.itemCount > 0 && <Nav
           cursor={this.props.cursor}
           max={this.props.itemCount - 1}

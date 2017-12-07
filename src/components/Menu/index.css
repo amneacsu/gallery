@@ -12,7 +12,6 @@
   bottom: 0;
   width: 300px;
   background-color: #2f3136;
-  padding: 16px 16px;
   box-shadow: 0 0 20px rgba(0, 0, 0, .5);
 }
 
@@ -54,6 +53,7 @@
 }
 
 .sub button {
+  display: none;
   width: 30px;
   float: right;
   border: none;
@@ -61,16 +61,20 @@
   background-color: transparent;
   color: #fff;
   cursor: pointer;
-  line-height: 18px;
-  font-size: 24px;
+  line-height: 32px;
+  font-size: 6px;
 }
 
 .sub button:before {
-  content: "⨯";
+  content: "╳";
 }
 
 .subName {
   display: inline-block;
-  padding: 8px;
+  padding: 10px;
   font-size: 12px;
+}
+
+.sub:hover button {
+  display: block;
 }

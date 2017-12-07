@@ -43,7 +43,7 @@ class Menu extends Component {
 
     return (
       <div className={css.menu}>
-        <NavBar top>
+        <NavBar>
           <NavBtn
             label="⏣"
             onClick={() => this.toggle()}

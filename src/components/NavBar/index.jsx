@@ -4,11 +4,9 @@ import cx from 'classnames';
 
 import css from './index.css';
 
-const NavBar = ({ children, top, bottom }) => {
+const NavBar = ({ children, bottom }) => {
   return (
-    <div className={cx({
-      [css.nav]: true,
-      [css.navTop]: top,
+    <div className={cx(css.nav, {
       [css.navBottom]: bottom,
     })}>
       {children}
@@ -18,7 +16,6 @@ const NavBar = ({ children, top, bottom }) => {
 
 NavBar.propTypes = {
   children: PropTypes.node,
-  top: PropTypes.bool,
   bottom: PropTypes.bool,
 };
 

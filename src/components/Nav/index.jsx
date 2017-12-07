@@ -4,6 +4,8 @@ import PropTypes from 'prop-types';
 import NavBar from 'components/NavBar';
 import NavBtn from 'components/NavBtn';
 
+import css from './index.css';
+
 const clamp = (value, min, max) => Math.max(min, Math.min(value, max));
 
 class Nav extends Component {
@@ -39,19 +41,21 @@ class Nav extends Component {
 
     return (
       <NavBar bottom>
-        <NavBtn
-          left
-          label="←"
-          disabled={cursor === 0}
-          onClick={() => this.nav(-1)}
-        />
+        <div className={css.left}>
+          <NavBtn
+            label="←"
+            disabled={cursor === 0}
+            onClick={() => this.nav(-1)}
+          />
+        </div>
 
-        <NavBtn
-          right
-          label="→"
-          disabled={cursor === max}
-          onClick={() => this.nav(1)}
-        />
+        <div className={css.right}>
+          <NavBtn
+            label="→"
+            disabled={cursor === max}
+            onClick={() => this.nav(1)}
+          />
+        </div>
       </NavBar>
     );
   }

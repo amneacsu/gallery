@@ -29,8 +29,7 @@ class Item extends Component {
     return (
       <video
         autoPlay
-        controls
-        className={css.Video}
+        className={css.item}
         ref={this.setRef}
         onEnded={onEnded}
       >

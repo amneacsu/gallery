@@ -4,7 +4,7 @@ import _sortBy from 'lodash/sortBy';
 import NavBar from 'components/NavBar';
 import NavBtn from 'components/NavBtn';
 
-import css from './style.css';
+import css from './index.css';
 
 class Menu extends Component {
   constructor(props) {

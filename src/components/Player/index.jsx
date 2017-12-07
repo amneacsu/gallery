@@ -7,7 +7,7 @@ import Stream from 'core/stream';
 
 import * as Actions from 'store/actions';
 
-import css from './style.css';
+import css from './index.css';
 
 class Player extends Component {
   static propTypes = {

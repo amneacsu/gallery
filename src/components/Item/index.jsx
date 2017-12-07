@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import delayFirstRender from 'util/delayFirstRender';
 
-import css from './style.css';
+import css from './index.css';
 
 class Item extends Component {
   componentWillUnmount() {

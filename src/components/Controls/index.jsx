@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import Cursor from 'components/Cursor';
 import Nav from 'components/Nav';
 import * as Actions from 'store/actions';
-import css from './style.css';
+import css from './index.css';
 
 class Controls extends Component {
   static propTypes = {

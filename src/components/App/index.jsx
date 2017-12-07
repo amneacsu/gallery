@@ -5,7 +5,7 @@ import Player from 'components/Player';
 import Controls from 'components/Controls';
 import Store from 'core/store';
 
-import './style.css';
+import './index.css';
 
 class App extends Component {
   constructor(props) {

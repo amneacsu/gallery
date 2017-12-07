@@ -1,6 +1,6 @@
 import React from 'react';
 
-import css from './style.css';
+import css from './index.css';
 
 const Cursor = ({
   current,

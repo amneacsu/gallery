@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import _sortBy from 'lodash/sortBy';
 
 import NavBar from 'components/NavBar';
@@ -7,6 +8,11 @@ import NavBtn from 'components/NavBtn';
 import css from './index.css';
 
 class Menu extends Component {
+  static propTypes = {
+    subs: PropTypes.array,
+    onChangeSubs: PropTypes.func,
+  }
+
   constructor(props) {
     super(props);
 

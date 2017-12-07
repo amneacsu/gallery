@@ -1,10 +1,16 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 import delayFirstRender from 'util/delayFirstRender';
 
 import css from './index.css';
 
 class Item extends Component {
+  static propTypes = {
+    item: PropTypes.object,
+    onClick: PropTypes.func,
+  }
+
   componentWillUnmount() {
     this._e.src = '';
   }

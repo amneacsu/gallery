@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 import NavBar from 'components/NavBar';
 import NavBtn from 'components/NavBtn';
@@ -6,6 +7,12 @@ import NavBtn from 'components/NavBtn';
 const clamp = (value, min, max) => Math.max(min, Math.min(value, max));
 
 class Nav extends Component {
+  static propTypes = {
+    cursor: PropTypes.number,
+    max: PropTypes.number,
+    onChange: PropTypes.func,
+  }
+
   componentWillMount() {
     window.onkeydown = (e) => {
       let dir;

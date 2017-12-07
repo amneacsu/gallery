@@ -15,7 +15,7 @@ class Item extends Component {
     this._e.src = '';
   }
 
-  setRef(e) {
+  setRef = (e) => {
     this._e = e;
   }
 
@@ -31,7 +31,7 @@ class Item extends Component {
         autoPlay
         controls
         className={css.Video}
-        ref={(e) => this.setRef(e)}
+        ref={this.setRef}
         onEnded={onEnded}
       >
         <source src={url} />

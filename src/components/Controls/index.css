@@ -14,3 +14,13 @@
 .right {
   float: right;
 }
+
+.sub {
+  display: inline-block;
+  padding: 10px 20px;
+  line-height: 28px;
+  background-color: #36393f;
+  font-size: 20px;
+  color: #000;
+  text-decoration: none;
+}

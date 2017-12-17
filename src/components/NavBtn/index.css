@@ -11,7 +11,7 @@
 }
 
 .navBtn:disabled {
-  display: none;
+  opacity: .5;
 }
 
 .btnLeft {

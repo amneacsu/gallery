@@ -12,6 +12,7 @@ const clamp = (value, min, max) => Math.max(min, Math.min(value, max));
 class Controls extends Component {
   static propTypes = {
     cursor: PropTypes.number,
+    item: PropTypes.object,
     itemCount: PropTypes.number,
     onSetCursor: PropTypes.func,
   };
@@ -35,7 +36,7 @@ class Controls extends Component {
   }
 
   render() {
-    const { cursor, itemCount } = this.props;
+    const { cursor, item, itemCount } = this.props;
 
     return (
       <div className={css.controls}>
@@ -45,6 +46,9 @@ class Controls extends Component {
             disabled={cursor === 0}
             onClick={() => this.nav(-1)}
           />
+          {item && <a className={css.sub} href={`https://www.reddit.com${item.permalink}`} target="_blank">
+            {`/r/${item.subreddit}`}
+          </a>}
         </div>
 
         <div className={css.right}>
@@ -62,6 +66,7 @@ class Controls extends Component {
 export default connect(
   (state) => ({
     cursor: state.cursor,
+    item: state.items[state.cursor],
     itemCount: state.items.length,
   }),
   (dispatch) => ({

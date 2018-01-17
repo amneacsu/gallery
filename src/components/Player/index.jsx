@@ -49,13 +49,13 @@ class Player extends Component {
     }
 
     return (
-      <div className={css.item}>
-        {item && <Item
+      <div className={css.player}>
+        <Item
           item={item}
           key={item.name}
           onEnded={() => this.props.onSetCursor(this.props.cursor + 1)}
           repeat={this.props.repeat}
-        />}
+        />
       </div>
     );
   }

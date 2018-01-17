@@ -5,7 +5,9 @@ module.exports = {
   devtool: 'source-map',
   entry: './src/index.jsx',
   output: {
-    filename: 'dist/bundle.js',
+    path: path.resolve(__dirname, 'dist'),
+    publicPath: '/',
+    filename: 'bundle.js',
   },
   module: {
     rules: [
@@ -42,4 +44,7 @@ module.exports = {
       template: 'src/index.html',
     }),
   ],
+  devServer: {
+    historyApiFallback: true,
+  },
 };

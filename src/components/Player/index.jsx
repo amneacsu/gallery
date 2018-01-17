@@ -12,7 +12,6 @@ import css from './index.css';
 class Player extends Component {
   static propTypes = {
     cursor: PropTypes.number,
-    subs: PropTypes.array,
     item: PropTypes.object,
     items: PropTypes.array,
     onSetCursor: PropTypes.func,
@@ -22,11 +21,10 @@ class Player extends Component {
   constructor(props) {
     super(props);
 
-    this.stream = new Stream();
+    this.stream = new Stream(window.location);
   };
 
   componentWillMount() {
-    this.stream.setSubs(this.props.subs);
     this.fetchMore();
   }
 
@@ -34,19 +32,9 @@ class Player extends Component {
     if (nextProps.cursor === nextProps.items.length - 1) {
       this.fetchMore();
     }
-
-    if (nextProps.subs !== this.props.subs) {
-      this.stream.setSubs(nextProps.subs);
-      this.props.onSetCursor(0);
-      this.fetchMore();
-    }
   }
 
   fetchMore() {
-    if (this.stream.subs.length === 0) {
-      return;
-    }
-
     this.stream.fetchMore().then((newItems) => {
       this.props.onStreamAppend(newItems);
     });

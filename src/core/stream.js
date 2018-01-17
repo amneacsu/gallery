@@ -73,19 +73,24 @@ const parseItem = (item) => {
 };
 
 class Stream {
-  constructor() {
-    this.after = null;
-    this.subs = [];
-  }
+  constructor(href) {
+    const url = new URL(href);
+    url.hostname = 'www.reddit.com';
+    url.host = 'www.reddit.com';
+    url.port = 80;
+    url.protocol = 'https:';
+    url.pathname = url.pathname.replace(/\/?$/, '.json');
 
-  setSubs(subs) {
-    this.subs = subs;
+    this.url = url;
     this.after = null;
   }
 
   fetchMore() {
-    const sub = this.subs.join('+');
-    const url = `https://www.reddit.com/r/${sub}.json?after=${this.after}`;
+    if (this.after) {
+      this.url.searchParams.set('after', this.after);
+    }
+
+    const url = this.url.toString();
 
     return fetch(url).then(({ data }) => {
       this.after = data.after;

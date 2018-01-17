@@ -14,6 +14,7 @@ class Player extends Component {
     cursor: PropTypes.number,
     item: PropTypes.object,
     items: PropTypes.array,
+    repeat: PropTypes.bool,
     onSetCursor: PropTypes.func,
     onStreamAppend: PropTypes.func,
   };
@@ -53,6 +54,7 @@ class Player extends Component {
           item={item}
           key={item.name}
           onEnded={() => this.props.onSetCursor(this.props.cursor + 1)}
+          repeat={this.props.repeat}
         />}
       </div>
     );
@@ -64,6 +66,7 @@ export default connect(
     cursor: state.cursor,
     item: state.items[state.cursor],
     items: state.items,
+    repeat: state.repeat,
   }),
   (dispatch) => ({
     onSetCursor: (cursor) => dispatch(Actions.setCursor(cursor)),

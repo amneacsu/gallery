@@ -15,6 +15,7 @@ class Controls extends Component {
     item: PropTypes.object,
     itemCount: PropTypes.number,
     onSetCursor: PropTypes.func,
+    onToggleRepeat: PropTypes.func,
   };
 
   componentWillMount() {
@@ -22,6 +23,7 @@ class Controls extends Component {
       let dir;
       if (e.which === 37) dir = -1;
       if (e.which === 39 || e.which === 32) dir = 1;
+      if (e.which === 76 || e.which === 82) this.props.onToggleRepeat();
       dir && this.nav(dir);
     };
   }
@@ -71,5 +73,6 @@ export default connect(
   }),
   (dispatch) => ({
     onSetCursor: (cursor) => dispatch(Actions.setCursor(cursor)),
+    onToggleRepeat: () => dispatch(Actions.toggleRepeat),
   }),
 )(Controls);

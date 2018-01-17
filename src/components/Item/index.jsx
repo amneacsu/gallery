@@ -7,6 +7,7 @@ class Item extends Component {
   static propTypes = {
     item: PropTypes.object,
     onEnded: PropTypes.func,
+    repeat: PropTypes.bool,
   }
 
   componentWillUnmount() {
@@ -30,6 +31,7 @@ class Item extends Component {
         className={css.item}
         ref={this.setRef}
         onEnded={onEnded}
+        loop={this.props.repeat}
       >
         <source src={url} />
       </video>

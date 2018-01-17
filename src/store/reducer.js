@@ -1,11 +1,13 @@
 import {
   SET_CURSOR,
   STREAM_APPEND,
+  TOGGLE_REPEAT,
 } from './actions';
 
 const initialState = {
   cursor: 0,
   items: [],
+  repeat: false,
 };
 
 export default (state = initialState, action) => {
@@ -22,6 +24,11 @@ export default (state = initialState, action) => {
           ...state.items,
           ...action.items,
         ],
+      };
+    case TOGGLE_REPEAT:
+      return {
+        ...state,
+        repeat: !state.repeat,
       };
     default:
       return state;

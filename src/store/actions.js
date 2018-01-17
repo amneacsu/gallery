@@ -9,3 +9,8 @@ export const append = (items) => ({
   type: STREAM_APPEND,
   items,
 });
+
+export const TOGGLE_REPEAT = 'TOGGLE_REPEAT';
+export const toggleRepeat = {
+  type: TOGGLE_REPEAT,
+};

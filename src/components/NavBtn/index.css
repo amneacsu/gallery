@@ -12,6 +12,7 @@
 
 .navBtn:disabled {
   opacity: .5;
+  cursor: default;
 }
 
 .btnLeft {

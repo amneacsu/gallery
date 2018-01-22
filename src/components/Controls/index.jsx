@@ -51,6 +51,9 @@ class Controls extends Component {
           {item && <a className={css.sub} href={`https://www.reddit.com${item.permalink}`} target="_blank">
             {`/r/${item.subreddit}`}
           </a>}
+          {item && <span className={css.sub}>
+            {item.title}
+          </span>}
         </div>
 
         <div className={css.right}>

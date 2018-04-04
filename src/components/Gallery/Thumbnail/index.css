@@ -1,0 +1,18 @@
+.Thumbnail {
+  display: inline-block;
+  margin: 4px;
+  padding: 2px;
+  background: #fff;
+  box-shadow: 0 0 4px rgba(0, 0, 0, .3);
+  cursor: pointer;
+  border-radius: 2px;
+}
+
+.Thumbnail:hover {
+  background-color: yellow;
+}
+
+.Thumbnail video {
+  height: 240px;
+  display: block;
+}

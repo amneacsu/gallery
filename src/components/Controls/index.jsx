@@ -48,12 +48,12 @@ class Controls extends Component {
             disabled={cursor === 0}
             onClick={() => this.nav(-1)}
           />
-          {item && <a className={css.sub} href={`https://www.reddit.com${item.permalink}`} target="_blank">
-            {`/r/${item.subreddit}`}
-          </a>}
           {item && <span className={css.sub}>
-            {item.title}
+            {`/r/${item.subreddit}`}
           </span>}
+          {item && <a className={css.sub} href={`https://www.reddit.com${item.permalink}`} target="_blank">
+            {item.title}
+          </a>}
         </div>
 
         <div className={css.right}>

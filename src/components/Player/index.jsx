@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 import Item from 'components/Item';
-import Stream from 'core/stream';
 
 import * as Actions from 'store/actions';
 
@@ -17,33 +16,15 @@ class Player extends Component {
     item: PropTypes.object,
     itemCount: PropTypes.number,
     repeat: PropTypes.bool,
-    onSetCursor: PropTypes.func,
-    onToggleRepeat: PropTypes.func,
+    onMoveCursor: PropTypes.func,
   };
-
-  componentWillMount() {
-    // window.addEventListener('keydown', this.handleControls);
-  }
-
-  componentWillUnmount() {
-    // window.removeEventListener('keydown', this.handleControls);
-  }
-
-  handleControls = (e) => {
-    let dir;
-    if (e.which === 37) dir = -1;
-    if (e.which === 39 || e.which === 32) dir = 1;
-    if (e.which === 76 || e.which === 82) this.props.onToggleRepeat();
-    dir && this.nav(dir);
-  }
 
   nav(offset) {
     const { cursor, itemCount } = this.props;
-    const newOffset = clamp(cursor + offset, 0, itemCount - 1);
+    const newCursor = clamp(cursor + offset, 0, itemCount - 1);
+    const newOffset = newCursor - cursor;
 
-    if (newOffset !== cursor) {
-      this.props.onSetCursor(newOffset);
-    }
+    this.props.onMoveCursor(newOffset);
   }
 
   render() {
@@ -58,7 +39,7 @@ class Player extends Component {
         <Item
           item={item}
           key={item.name}
-          onEnded={() => this.props.onSetCursor(this.props.cursor + 1)}
+          onEnded={() => this.props.onMoveCursor(1)}
           repeat={this.props.repeat}
         />
       </div>
@@ -74,8 +55,7 @@ export default connect(
     repeat: state.repeat,
   }),
   (dispatch) => ({
-    onSetCursor: (cursor) => dispatch(Actions.setCursor(cursor)),
+    onMoveCursor: (cursor) => dispatch(Actions.moveCursor(cursor)),
     onStreamAppend: (items) => dispatch(Actions.append(items)),
-    onToggleRepeat: () => dispatch(Actions.toggleRepeat),
   })
 )(Player);

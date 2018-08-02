@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 
-import Player from 'components/Player';
 import Gallery from 'components/Gallery';
 import Controls from 'components/Controls';
 

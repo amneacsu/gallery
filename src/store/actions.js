@@ -4,6 +4,12 @@ export const setCursor = (cursor) => ({
   cursor,
 });
 
+export const MOVE_CURSOR = 'MOVE_CURSOR';
+export const moveCursor = (offset) => ({
+  type: MOVE_CURSOR,
+  offset,
+});
+
 export const STREAM_APPEND = 'STREAM_APPEND';
 export const append = (items) => ({
   type: STREAM_APPEND,

@@ -1,5 +1,6 @@
 .controls {
   position: fixed;
+  display: flex;
   left: 0;
   right: 0;
   bottom: 0;
@@ -7,19 +8,25 @@
   background-color: #36393f;
 }
 
-.left {
-  float: left;
+.left, .right {
+  flex: 0;
 }
 
-.right {
-  float: right;
-}
-
-.sub {
-  display: inline-block;
-  padding: 10px 20px;
+.center {
+  color: #fff;
+  flex: 1;
+  padding: 10px;
   line-height: 28px;
-  font-size: 20px;
+  font-family: monospace;
+  font-size: 12px;
+  color: #fff;
+  text-decoration: none;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.center a {
   color: #fff;
   text-decoration: none;
 }

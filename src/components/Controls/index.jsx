@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-import NavBtn from 'components/NavBtn';
+import NavBtn from './elements/NavBtn';
 import * as Actions from 'store/actions';
 
 import css from './index.css';
@@ -14,7 +14,7 @@ class Controls extends Component {
     cursor: PropTypes.number,
     item: PropTypes.object,
     itemCount: PropTypes.number,
-    onSetCursor: PropTypes.func,
+    onMoveCursor: PropTypes.func,
     onToggleRepeat: PropTypes.func,
   };
 
@@ -30,11 +30,10 @@ class Controls extends Component {
 
   nav(offset) {
     const { cursor, itemCount } = this.props;
-    const newOffset = clamp(cursor + offset, 0, itemCount - 1);
+    const newCursor = clamp(cursor + offset, 0, itemCount - 1);
+    const newOffset = newCursor - cursor;
 
-    if (newOffset !== cursor) {
-      this.props.onSetCursor(newOffset);
-    }
+    this.props.onMoveCursor(newOffset);
   }
 
   render() {
@@ -48,13 +47,13 @@ class Controls extends Component {
             disabled={cursor === 0}
             onClick={() => this.nav(-1)}
           />
-          {item && <span className={css.sub}>
-            {`/r/${item.subreddit}`}
-          </span>}
-          {item && <a className={css.sub} href={`https://www.reddit.com${item.permalink}`} target="_blank">
-            {item.title}
-          </a>}
         </div>
+
+        {item && <span className={css.center}>
+          <a href={`https://www.reddit.com${item.permalink}`} target="_blank">
+            {`/r/${item.subreddit} [${item.score}] ${item.title}`}
+          </a>
+        </span>}
 
         <div className={css.right}>
           <NavBtn
@@ -75,7 +74,7 @@ export default connect(
     itemCount: state.items.length,
   }),
   (dispatch) => ({
-    onSetCursor: (cursor) => dispatch(Actions.setCursor(cursor)),
+    onMoveCursor: (cursor) => dispatch(Actions.moveCursor(cursor)),
     onToggleRepeat: () => dispatch(Actions.toggleRepeat),
   }),
 )(Controls);

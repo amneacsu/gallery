@@ -1,5 +1,6 @@
 import {
   SET_CURSOR,
+  MOVE_CURSOR,
   STREAM_APPEND,
   TOGGLE_REPEAT,
 } from './actions';
@@ -16,6 +17,11 @@ export default (state = initialState, action) => {
       return {
         ...state,
         cursor: action.cursor,
+      };
+    case MOVE_CURSOR:
+      return {
+        ...state,
+        cursor: state.cursor + action.offset,
       };
     case STREAM_APPEND:
       return {

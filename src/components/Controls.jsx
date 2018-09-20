@@ -74,11 +74,7 @@ class Controls extends Component {
     return (
       <ControlsWrapper>
         <PullEdge>
-          <NavBtn
-            label="←"
-            disabled={cursor === 0}
-            onClick={() => this.nav(-1)}
-          />
+          <NavBtn disabled={cursor === 0} onClick={() => this.nav(-1)}>←</NavBtn>
         </PullEdge>
 
         {item && <ControlsCenter>
@@ -88,11 +84,7 @@ class Controls extends Component {
         </ControlsCenter>}
 
         <PullEdge>
-          <NavBtn
-            label="→"
-            disabled={cursor === itemCount - 1}
-            onClick={() => this.nav(1)}
-          />
+          <NavBtn disabled={cursor === itemCount - 1} onClick={() => this.nav(1)}>→</NavBtn>
         </PullEdge>
       </ControlsWrapper>
     );

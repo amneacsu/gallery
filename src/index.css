@@ -2,9 +2,5 @@ body {
   background: #605e97;
   color: #fff;
   margin: 0;
-}
-
-body,
-input[type="text"] {
   font-family: "Helvetica Neue";
 }

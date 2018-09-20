@@ -1,7 +1,15 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import styled from 'styled-components';
 
-import css from './index.css';
+const Video = styled.video`
+  width: 100%;
+  height: 100%;
+
+  ${'' /* video::-webkit-media-controls-overlay-play-button {
+    display: none;
+  } */}
+`;
 
 class Item extends Component {
   static propTypes = {
@@ -26,16 +34,15 @@ class Item extends Component {
     const url = this.props.item.url;
 
     return (
-      <video
+      <Video
         controls
         autoPlay
-        className={css.item}
         ref={this.setRef}
         onEnded={onEnded}
         loop={this.props.repeat}
       >
         <source src={url} />
-      </video>
+      </Video>
     );
   }
 }

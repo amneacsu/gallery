@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import styled from 'styled-components';
 
 import Item from 'components/Item';
 
@@ -8,7 +9,14 @@ import * as Actions from 'store/actions';
 
 const clamp = (value, min, max) => Math.max(min, Math.min(value, max));
 
-import css from './index.css';
+const PlayerArea = styled.div`
+  background: rgba(0, 0, 0, .9);
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 48px;
+`;
 
 class Player extends Component {
   static propTypes = {
@@ -35,14 +43,14 @@ class Player extends Component {
     }
 
     return (
-      <div className={css.player}>
+      <PlayerArea>
         <Item
           item={item}
           key={item.name}
           onEnded={() => this.props.onMoveCursor(1)}
           repeat={this.props.repeat}
         />
-      </div>
+      </PlayerArea>
     );
   }
 }

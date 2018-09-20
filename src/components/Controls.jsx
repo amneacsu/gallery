@@ -1,13 +1,45 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import styled from 'styled-components';
 
-import NavBtn from './elements/NavBtn';
+import NavBtn from './NavBtn';
 import * as Actions from 'store/actions';
 
-import css from './index.css';
-
 const clamp = (value, min, max) => Math.max(min, Math.min(value, max));
+
+const ControlsWrapper = styled.div`
+  position: fixed;
+  display: flex;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  color: #FFF;
+  background-color: #36393f;
+`;
+
+const ControlsCenter = styled.span`
+  color: #fff;
+  flex: 1;
+  padding: 10px;
+  line-height: 28px;
+  font-family: monospace;
+  font-size: 12px;
+  color: #fff;
+  text-decoration: none;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+
+  & a {
+    color: #fff;
+    text-decoration: none;
+  }
+`;
+
+const PullEdge = styled.div`
+  flex: 0,
+`;
 
 class Controls extends Component {
   static propTypes = {
@@ -40,29 +72,29 @@ class Controls extends Component {
     const { cursor, item, itemCount } = this.props;
 
     return (
-      <div className={css.controls}>
-        <div className={css.left}>
+      <ControlsWrapper>
+        <PullEdge>
           <NavBtn
             label="←"
             disabled={cursor === 0}
             onClick={() => this.nav(-1)}
           />
-        </div>
+        </PullEdge>
 
-        {item && <span className={css.center}>
+        {item && <ControlsCenter>
           <a href={`https://www.reddit.com${item.permalink}`} target="_blank">
             {`/r/${item.subreddit} [${item.score}] ${item.title}`}
           </a>
-        </span>}
+        </ControlsCenter>}
 
-        <div className={css.right}>
+        <PullEdge>
           <NavBtn
             label="→"
             disabled={cursor === itemCount - 1}
             onClick={() => this.nav(1)}
           />
-        </div>
-      </div>
+        </PullEdge>
+      </ControlsWrapper>
     );
   }
 }

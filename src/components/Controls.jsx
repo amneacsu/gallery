@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
 
@@ -42,14 +41,6 @@ const PullEdge = styled.div`
 `;
 
 class Controls extends Component {
-  static propTypes = {
-    cursor: PropTypes.number,
-    item: PropTypes.object,
-    itemCount: PropTypes.number,
-    onMoveCursor: PropTypes.func,
-    onToggleRepeat: PropTypes.func,
-  };
-
   componentWillMount() {
     window.onkeydown = (e) => {
       let dir;

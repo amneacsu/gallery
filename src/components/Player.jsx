@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
 
@@ -18,14 +17,6 @@ const PlayerArea = styled.div`
 `;
 
 class Player extends Component {
-  static propTypes = {
-    cursor: PropTypes.number,
-    item: PropTypes.object,
-    itemCount: PropTypes.number,
-    repeat: PropTypes.bool,
-    onMoveCursor: PropTypes.func,
-  };
-
   nav(offset) {
     const { cursor, itemCount } = this.props;
     const newCursor = clamp(cursor + offset, 0, itemCount - 1);

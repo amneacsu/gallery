@@ -4,3 +4,7 @@ body {
   margin: 0;
   font-family: "Helvetica Neue";
 }
+
+video::-webkit-media-controls-overlay-play-button {
+  display: none;
+}

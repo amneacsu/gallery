@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 import Player from './Player';
@@ -9,13 +8,6 @@ import Stream from '../core/stream';
 const LIMIT = 15;
 
 class Gallery extends Component {
-  static propTypes = {
-    cursor: PropTypes.number,
-    item: PropTypes.object,
-    items: PropTypes.array,
-    onStreamAppend: PropTypes.func,
-  };
-
   constructor(props) {
     super(props);
 

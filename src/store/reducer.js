@@ -1,5 +1,4 @@
 import {
-  SET_CURSOR,
   MOVE_CURSOR,
   STREAM_APPEND,
   TOGGLE_REPEAT,
@@ -13,16 +12,12 @@ const initialState = {
 
 export default (state = initialState, action) => {
   switch (action.type) {
-    case SET_CURSOR:
-      return {
-        ...state,
-        cursor: action.cursor,
-      };
     case MOVE_CURSOR:
       return {
         ...state,
         cursor: state.cursor + action.offset,
       };
+
     case STREAM_APPEND:
       return {
         ...state,
@@ -31,11 +26,13 @@ export default (state = initialState, action) => {
           ...action.items,
         ],
       };
+
     case TOGGLE_REPEAT:
       return {
         ...state,
         repeat: !state.repeat,
       };
+
     default:
       return state;
   }

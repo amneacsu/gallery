@@ -1,9 +1,3 @@
-export const SET_CURSOR = 'SET_CURSOR';
-export const setCursor = (cursor) => ({
-  type: SET_CURSOR,
-  cursor,
-});
-
 export const MOVE_CURSOR = 'MOVE_CURSOR';
 export const moveCursor = (offset) => ({
   type: MOVE_CURSOR,

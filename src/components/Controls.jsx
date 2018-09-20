@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import styled from 'styled-components';
 
 import NavBtn from './NavBtn';
-import * as Actions from 'store/actions';
+import * as Actions from '../store/actions';
 
 const clamp = (value, min, max) => Math.max(min, Math.min(value, max));
 

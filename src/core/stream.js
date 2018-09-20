@@ -1,4 +1,4 @@
-import { fetch } from 'core/api';
+import { fetch } from './api';
 
 const getGfyUrl = (url) => {
   let match = url.match(/gfycat\.com\/+([\w]+)/);
@@ -33,6 +33,7 @@ const sanitize = (item) => {
   let url = item.url;
 
   url = url.replace('gfycat.com/gifs/detail', 'gfycat.com');
+  // eslint-disable-next-line
   url = url.replace(/[\?#].*$/, '');
 
   if (url.indexOf('//imgur.com') > -1) {

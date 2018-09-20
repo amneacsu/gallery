@@ -3,9 +3,8 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
 
-import Item from 'components/Item';
-
-import * as Actions from 'store/actions';
+import Item from './Item';
+import * as Actions from '../store/actions';
 
 const clamp = (value, min, max) => Math.max(min, Math.min(value, max));
 

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
-import Gallery from './Gallery';
-import Controls from './Controls';
+import Gallery from './components/Gallery';
+import Controls from './components/Controls';
 
 class App extends Component {
   render() {

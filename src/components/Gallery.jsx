@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-import Player from 'components/Player';
-import * as Actions from 'store/actions';
-import Stream from 'core/stream';
+import Player from './Player';
+import * as Actions from '../store/actions';
+import Stream from '../core/stream';
 
 const LIMIT = 15;
 

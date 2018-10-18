@@ -2,24 +2,18 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
 
-import NavBtn from './NavBtn';
 import * as Actions from '../store/actions';
 
 const clamp = (value, min, max) => Math.max(min, Math.min(value, max));
 
 const ControlsWrapper = styled.div`
   position: fixed;
-  display: flex;
   left: 0;
   right: 0;
   bottom: 0;
   color: #FFF;
   background-color: #36393f;
-`;
-
-const ControlsCenter = styled.span`
   color: #fff;
-  flex: 1;
   padding: 10px;
   line-height: 28px;
   font-family: monospace;
@@ -34,10 +28,6 @@ const ControlsCenter = styled.span`
     color: #fff;
     text-decoration: none;
   }
-`;
-
-const PullEdge = styled.div`
-  flex: 0,
 `;
 
 class Controls extends Component {
@@ -60,23 +50,17 @@ class Controls extends Component {
   }
 
   render() {
-    const { cursor, item, itemCount } = this.props;
+    const { item } = this.props;
+
+    if (!item) {
+      return null;
+    }
 
     return (
       <ControlsWrapper>
-        <PullEdge>
-          <NavBtn disabled={cursor === 0} onClick={() => this.nav(-1)}>←</NavBtn>
-        </PullEdge>
-
-        {item && <ControlsCenter>
-          <a href={`https://www.reddit.com${item.permalink}`} target="_blank">
-            {`/r/${item.subreddit} [${item.score}] ${item.title}`}
-          </a>
-        </ControlsCenter>}
-
-        <PullEdge>
-          <NavBtn disabled={cursor === itemCount - 1} onClick={() => this.nav(1)}>→</NavBtn>
-        </PullEdge>
+        <a href={`https://www.reddit.com${item.permalink}`} target="_blank">
+          {`/r/${item.subreddit} [${item.score}] ${item.title}`}
+        </a>
       </ControlsWrapper>
     );
   }

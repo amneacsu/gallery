@@ -58,7 +58,7 @@ class Controls extends Component {
 
     return (
       <ControlsWrapper>
-        <a href={`https://www.reddit.com${item.permalink}`} target="_blank">
+        <a href={`https://www.reddit.com${item.permalink}`} target="_blank" rel="noopener noreferrer">
           {`/r/${item.subreddit} [${item.score}] ${item.title}`}
         </a>
       </ControlsWrapper>

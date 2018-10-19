@@ -7,17 +7,26 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
+    "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
   "author": "",
   "license": "ISC",
+  "eslintConfig": {
+    "extends": "react-app"
+  },
   "dependencies": {
-    "react-redux": "^5.0.6",
-    "redux": "^4.0.0",
-    "styled-components": "^3.4.9",
     "react": "^16.5.2",
     "react-dom": "^16.5.2",
-    "react-scripts": "1.1.5"
-  }
+    "react-redux": "^5.0.7",
+    "react-scripts": "2.0.5",
+    "redux": "^4.0.1",
+    "styled-components": "^4.0.2"
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ]
 }

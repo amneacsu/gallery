@@ -4,7 +4,13 @@ const getGfyUrl = (url) => {
   let match = url.match(/gfycat\.com\/+([\w]+)/);
   const id = match[1];
 
-  return fetch(`https://gfycat.com/cajax/get/${id}`).then((d) => {
+  return fetch(`https://api.gfycat.com/v1/gfycats/${id}`, {
+    cache: true,
+  }).then((d) => {
+    if (d === null) {
+      return null;
+    }
+
     if (!d.error && d.gfyItem.numFrames === '9') return null;
     return d.error ? null : d.gfyItem.webmUrl;
   });

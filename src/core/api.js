@@ -53,7 +53,9 @@ export const getVideoUrl = (src) => {
   if (match) {
     const id = match[1];
 
-    const d = fetch(`https://gfycat.com/cajax/get/${id}`);
+    const d = fetch(`https://api.gfycat.com/v1/gfycats/${id}`, {
+      cache: true,
+    });
     return d.gfyItem.webmUrl;
   }
 

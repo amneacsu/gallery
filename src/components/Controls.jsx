@@ -17,7 +17,8 @@ const ControlsWrapper = styled.div`
   padding: 10px;
   line-height: 28px;
   font-family: monospace;
-  font-size: 12px;
+  font-size: 16px;
+  font-weight: bold;
   color: #fff;
   text-decoration: none;
   white-space: nowrap;
